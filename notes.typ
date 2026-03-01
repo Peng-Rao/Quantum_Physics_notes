@@ -1,4 +1,5 @@
 #import "@local/simple-note:0.0.1": *
+#import "lib.typ" as czbloch
 #show: simple-note.with(
   title: [
     Quantum Physics
@@ -122,6 +123,36 @@ $
   ket(v) arrow vec(braket(e_1, v), braket(e_2, v), dots, braket(e_n, v))
 $
 
+The same vector $ket(v)$ can be expanded in different bases, assume a second basis $cal(B)'={ket(e_k ')}$, the coordinates of the vector in the new basis are given by
+$
+  ket(v) = sum_k v_k ket(e_k) = sum_k v'_k ket(e_k ')
+$
+the coordinates $ket(v_k ')$ can be expressed
+$
+  v'_k = braket(e_k ', v)
+$
+and use the completeness of $cal(B)$ ($sum_l ket(e_l) bra(e_l) = I$)
+$
+  v_k ' = & sum_l braket(e_k ', e_l) braket(e_l, v) \
+        = & sum_l U_(k l) v_l
+$
+where $U_(k l) = braket(e_k ', e_l)$ is the change of basis matrix. The same relation in terms of column vectors can be written as
+$
+  vec(v'_1, v'_2, dots) = mat(U_(1 1), U_(1 2), dots; U_(2 1), U_(2 2), dots; dots.v, dots.v, dots.down) vec(v_1, v_2, dots)
+$
+
+We define the matrix elements of an operator $hat(O)$ between two basis vectors as
+$
+  O_(k l) = braket(e_k, hat(O)|e_l)
+$
+After having chosen a basis in $cal(H)$, a linear operator can be represented as a matrix.
+$
+  hat(O) arrow mat(O_(1 1), O_(1 2), dots; O_(2 1), O_(2 2), dots; dots.v, dots.v, dots.down)
+$
+The matrix element of an operator $hat(O)$ between the states $ket(psi)$ and $ket(phi)$ is the scalar product
+$
+  braket(psi, hat(O)|phi)
+$
 === Tensor Product
 Let us consider two vector spaces $cal(H)_1$ and $cal(H)_2$. For any pair of vectors, $ket(v^((1))) in cal(H)$ and $ket(v^((2))) in cal(H)_2$, we can define the *tensor product*
 $
@@ -141,3 +172,25 @@ The dimension of the tensor product is the product of the dimensions of the two 
 $
   dim(cal(H)_1 times.o cal(H)_2) = dim(cal(H)_1) times dim(cal(H)_2)
 $
+
+== Two State System
+We can illustrate the concepts introduced so far by considering a two state system. Given a basis $cal(B) = {ket(0), ket(1)}$, any state in $cal(H)$ can be written as a linear combination of the basis vectors:
+$
+  ket(psi) = alpha ket(0) + beta ket(1)
+$
+where $alpha, beta in CC$ are complex numbers.
+
+Denoting by $phi$ the relative phase between $alpha$ and $beta$, we can parametrize the state of the system in terms of two angles:
+$
+  alpha = cos(theta/2) quad beta = e^(i phi) sin(theta/2)
+$
+The parametrization above allows us to identify the quantum states with the points on the surface of a two-dimensional unit sphere, called the *Bloch sphere*:
+#figure(
+  czbloch.bloch(
+    phi: 45deg, //
+    theta: 30deg,
+    state-color: red,
+    length: 4cm,
+  ),
+)
+
