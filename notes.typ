@@ -194,3 +194,94 @@ The parametrization above allows us to identify the quantum states with the poin
   ),
 )
 
+#pagebreak()
+
+
+= Obervables
+For a quantum system in a state described by some complex vector $ket(v)$, the outcome of measurements of the observable $hat(O)$ is a stochastic variable. The theory can predict:
++ the probability distribution function (pdf), that describes the possible results of the measurement and their respective frequencies
++ the state of the system after the measurement.
+
+== Position Operator
+The $abs(psi(x))^2$ describes the probability density of finding the system in the state $ket(psi)$ at position $x$. So the position $x$ is a real stochastic variable with pdf $abs(psi(x))^2$. The mean value of the position of the system is therefore
+$
+  chevron.l x chevron.r = integral d x abs(psi(x))^2 x
+$
+
+== Generic Observables
+We define an *observable* to be a quantity that can be measured in an experiment. In quantum mechanics each observable $O$ is associated with a _linear operator_ $hat(O)$ acting in the Hilbert space of physical states:
+$
+  hat(O): cal(H) & arrow cal(H) \
+        ket(psi) & arrow.bar ket(phi) = hat(O) ket(psi)
+$
+*The measurement is NOT associated with acting with the operator on the state.*
+
+For any quantum state $ket(psi)$, if you perform a large number of repeated measurements on the physical quantity $O$, the statistical mean value obtained will exactly equal the _expectation value_ of the operator $O$ in that state:
+$
+  chevron.l O chevron.r = braket(psi, hat(O)|psi)
+$
+
+== Observing Obervables
+The theoretical framework of quantum mechanics allows us to predict:
++ the possible outcomes of the measurements above;
++ the probability of obtaining each of these possible outcomes.
+
+== Eigenvalues and Eigenstates
+The possible outcomes of experiments $O_k$, are the eigenvalues of the operator $hat(O)$, that is the solutions of the equation
+$
+  hat(O) ket(psi_k) = O_k ket(psi_k)
+$
+where $ket(psi_k)$ is the *eigenstate* associated with the eigenvalue $O_k$.
+
+#pagebreak()
+
+== Hermitian Operators
+We must require that the operators that represent observables have only real eigenvalues, since we want to identify the eigenvalues with the possible results of measurements. We can guarantee this if we only use *Hermitian operators* to represent observables.
+
+Let us define first the Hermitian conjugate $hat(O)^dagger$ of an operator $hat(O)$.
+Let $ket(psi)$ and $ket(phi)$ be arbitrary states in $cal(H)$, then
+$
+  braket(phi, hat(O)^dagger|psi) = braket(psi, hat(O)|phi)^*
+$
+An operator $hat(O)$ is *Hermitian* if
+$
+  hat(O) = hat(O)^dagger
+$
+
+Hermitian operators obey properties that are important for building the logical framework of quantum mechanics.
+
++ Hermitian operators have real eigenvalues. The eigenvalue equation is $ hat(O) ket(psi_k) = O_k ket(psi_k), k = 1, dots, n $ $ket(psi_k)$ are the eigenfunctions of $hat(O)$, $O_k$ are eigenvalues. The we have $ hat(O) = hat(O)^dagger arrow.double.long O_k in RR $
++ The eigenstates of a Hermitian operator that belong to different eigenvalues are orthogonal.
++ If $hat(O)$ is a Hermitian operator acting on a vector space $cal(H)$, there exists an orthogonal basis of $cal(H)$ made up of eigenvectors of $hat(O)$. Every vector $ket(psi)$ can be expanded as $ ket(psi) = sum_k c_k ket(psi_k) $ where $c_k$ are complex coefficients, compted by taking the projection of $ket(psi)$ onto the state $ket(psi_k)$: $ c_k = braket(psi_k, psi) $
++ The commutator of two Hermitian operators is anti-Hermitian. While this property is trivial to prove, it is useful to keep in mind as a way to check your results. Every time you compute a commutator of Hermitian operators, you have a sanity check of your answer.
+
+#pagebreak()
+
+== Spectral Decomposition
+Given the decomposition
+$
+  ket(psi) = sum_k c_k ket(psi_k)
+$
+the probability of finding the
+nondegenerate eigenvalue $O_k$ when measuring $O$ in the state described by normalized vector $ket(psi)$ is given by
+$
+  p_k = |c_k|^2
+$
+Clearly the sum of probabilities should be properly normalized and therefore
+$
+  sum_k p_k = sum_k |c_k|^2 = 1
+$
+
+In the case where the eigenvalue $O_k$ is g-fold degenerate, the probability of $O_k$ being the result of a measurement of the observable $O$ in the state $ket(psi)$ is obtained by summing over the contributions from the whole subspace spun by the degenerate eigenvectors.
+$
+  p_k = sum_(n=1)^g |c_k^((n))|^2 = sum_(n=1)^g |braket(psi_k^((n)), psi)|^2
+$
+
+== Collapse of the State Vector
+Immediately after a measurement that gave the result $O_k$, where $O_k$ is a nondegenerate eigenvalue, the system is in the state $ket(psi_k)$, the eigenvector of $hat(O)$ associated with the eigenvalue $O_k$. The state vector has been *projected* onto the eigenstate by the process of performing the measurement.
+
+Immediately after a measurement yielding the value $O_k$, the state of the system is transformed according to
+$
+  ket(psi) arrow.bar 1 / sqrt(braket(psi, hat(cal(P))_k|psi)) hat(cal(P))_k ket(psi) = ket(psi_k)
+$
+This is sometimes referred to as the collapse of the state vector.
